@@ -13,11 +13,13 @@ package
 			this.maxVelocity.y = 200;
 			this.acceleration.y = 200;
 			loadGraphic(player_img, true,true,41,53);
+			addAnimation("walk", [0,1,2,3,4,5,6,7,8,9,10],25,true);
 			this.drag.x = this.maxVelocity.x*4;
 		}
 		
 		override public function update():void
 		{
+			play("walk");
 			//Player movement and controls
 			this.acceleration.x = 0;
 			if(FlxG.keys.LEFT)
