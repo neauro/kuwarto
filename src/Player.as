@@ -4,33 +4,33 @@ package
 	
 	public class Player extends FlxSprite
 	{
-		[Embed(source = '../assets/protag.png')] private var player:Class;
+		[Embed(source = '../assets/protag.png')] private var player_img:Class;
 		
 		public function Player()
 		{
-			player.makeGraphic(10,12,0xffaa1111);
-			player.maxVelocity.x = 80;
-			player.maxVelocity.y = 200;
-			player.acceleration.y = 200;
-			player.drag.x = player.maxVelocity.x*4;
-			super(50,200,player);
+			//player.makeGraphic(10,12,0xffaa1111);
+			this.maxVelocity.x = 80;
+			this.maxVelocity.y = 200;
+			this.acceleration.y = 200;
+			loadGraphic(player_img, true,true,41,53);
+			this.drag.x = this.maxVelocity.x*4;
 		}
 		
 		override public function update():void
 		{
 			//Player movement and controls
-			player.acceleration.x = 0;
+			this.acceleration.x = 0;
 			if(FlxG.keys.LEFT)
-				player.acceleration.x = -player.maxVelocity.x*4;
+				this.acceleration.x = -this.maxVelocity.x*4;
 			if(FlxG.keys.RIGHT)
-				player.acceleration.x = player.maxVelocity.x*4;
+				this.acceleration.x = this.maxVelocity.x*4;
 			if(FlxG.keys.justPressed("SPACE"))
-				player.velocity.y = -player.maxVelocity.y/2;
+				this.velocity.y = -this.maxVelocity.y/2;
 			
 			//Check for player lose conditions
-			if(player.y > FlxG.height)
+			if(this.y > FlxG.height)
 			{
-				FlxG.score = 1; //sets status.text to "Aww, you died!"
+				//FlxG.score = 1; //sets status.text to "Aww, you died!"
 				FlxG.resetState();
 			}
 			super.update();
