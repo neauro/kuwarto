@@ -5,10 +5,14 @@ package
 	public class PlayState extends FlxState
 	{
 		public var player:FlxSprite;
+		[Embed(source = "../assets/land_bg.gif")] private var background_image:Class;
 		
 		override public function create():void
 		{
-			//Create player (a red box)
+			var bg:FlxSprite;
+			bg = new FlxSprite(0, 0, background_image);
+			add(bg);
+			
 			player = new Player();
 			add(player);
 			
@@ -17,24 +21,7 @@ package
 		
 		override public function update():void
 		{
-			//Player movement and controls
-			player.acceleration.x = 0;
-			if(FlxG.keys.LEFT)
-				player.acceleration.x = -player.maxVelocity.x*4;
-			if(FlxG.keys.RIGHT)
-				player.acceleration.x = player.maxVelocity.x*4;
-			if(FlxG.keys.justPressed("SPACE"))
-				player.velocity.y = -player.maxVelocity.y/2;
-			
-			//Updates all the objects appropriately
 			super.update();
-			
-			//Check for player lose conditions
-			if(player.y > FlxG.height)
-			{
-				FlxG.score = 1; //sets status.text to "Aww, you died!"
-				FlxG.resetState();
-			}
 		}
 	}
 }
