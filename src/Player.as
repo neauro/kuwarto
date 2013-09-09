@@ -7,14 +7,13 @@ package
 		[Embed(source = '../assets/protag.png')] private var player_img:Class;
 		private var bottom = FlxG.height-70;
 		
-		
-		
 		public function Player()
 		{
 			//player.makeGraphic(10,12,0xffaa1111);
 			this.maxVelocity.x = 80;
 			this.maxVelocity.y = 200;
 			this.acceleration.y = 200;
+			this.facing = LEFT;
 			loadGraphic(player_img, true,true,41,53);
 			addAnimation("walk", [0,1,2,3,4,5,6,7,8,9,10],25,true);
 			addAnimation("idle", [0,11,12,13,14,15,16,17,18,19,20],25,true);
@@ -32,11 +31,11 @@ package
 			
 			this.acceleration.x = 0;
 			if (FlxG.keys.LEFT) {
-				this.facing = LEFT;
+				this.facing = RIGHT;
 				this.acceleration.x = -this.maxVelocity.x*4;
 			}
 			if (FlxG.keys.RIGHT) {
-				this.facing = RIGHT;
+				this.facing = LEFT;
 				this.acceleration.x = this.maxVelocity.x*4;
 			}
 			if (FlxG.keys.justPressed("SPACE"))
