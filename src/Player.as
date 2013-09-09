@@ -16,13 +16,13 @@ package
 			this.facing = LEFT;
 			loadGraphic(player_img, true,true,41,53);
 			addAnimation("walk", [0,1,2,3,4,5,6,7,8,9,10],25,true);
-			addAnimation("idle", [0,11,12,13,14,15,16,17,18,19,20],25,true);
+			addAnimation("idle", [0,11,12,13,14,15,16,17,18,19,20],5,true);
 			this.drag.x = this.maxVelocity.x*4;
 		}
 		
 		override public function update():void
 		{
-			if (this.velocity.x > 0 || this.velocity.y > 0) {
+			if (this.acceleration.x > 0) {
 				play("walk");
 			}
 			else {
