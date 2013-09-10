@@ -1,2 +1,7 @@
 bin-debug/
 .DS_STORE
+html-template/
+.actionScriptProperties
+.project
+.settings/
+*.swp
