@@ -9,7 +9,6 @@ package
 		
 		public function Player()
 		{
-			//player.makeGraphic(10,12,0xffaa1111);
 			this.maxVelocity.x = 80;
 			this.maxVelocity.y = 200;
 			this.acceleration.y = 200;
@@ -27,18 +26,23 @@ package
 			if (FlxG.keys.LEFT) {
 				this.facing = RIGHT;
 				this.acceleration.x = -this.maxVelocity.x*4;
-				play("walk");
-				trace("left key");
 			}
 			if (FlxG.keys.RIGHT) {
 				this.facing = LEFT;
 				this.acceleration.x = this.maxVelocity.x*4;
-				play("walk");
-				trace("right key");
 			}
+
 			if (FlxG.keys.justPressed("SPACE"))
 				this.velocity.y = -this.maxVelocity.y/2;
-			
+
+			// animations
+			if (this.velocity.x != 0) {
+				play("walk");
+			}
+			else {
+				play("idle");
+			} 
+
 			super.update();
 			
 			//Check for player lose conditions
@@ -47,11 +51,7 @@ package
 				//FlxG.score = 1; //sets status.text to "Aww, you died!"
 				//FlxG.resetState();
 				this.y = bottom;
-				if (!(this.velocity.x > 0)) {
-					play("idle");
-				}
 			}
-			
 		}
 	}
 }
