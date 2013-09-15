@@ -23,7 +23,7 @@ package
 		
 		override public function update():void
 		{
-			test.text = player.velocity.x + "," + player.velocity.y;
+			// test.text = player.velocity.x + "," + player.velocity.y;
 
 			super.update();
 		}
