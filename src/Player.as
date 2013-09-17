@@ -13,6 +13,8 @@ package
 			this.maxVelocity.y = 200;
 			this.acceleration.y = 200;
 			this.facing = LEFT;
+			this.x = FlxG.width / 2;
+			this.y = FlxG.height / 2;
 			loadGraphic(player_img, true,true,41,53);
 			addAnimation("walk", [0,1,2,3,4,5,6,7,8,9,10],25,true);
 			addAnimation("idle", [0,11,12,13,14,15,16,17,18,19,20],5,true);
@@ -44,14 +46,6 @@ package
 			} 
 
 			super.update();
-			
-			//Check for player lose conditions
-			if(this.y > bottom)
-			{
-				//FlxG.score = 1; //sets status.text to "Aww, you died!"
-				//FlxG.resetState();
-				this.y = bottom;
-			}
 		}
 	}
 }
