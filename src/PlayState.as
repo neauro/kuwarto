@@ -6,6 +6,7 @@ package
 	{
 		public var player:FlxSprite;
 		public var test:FlxText;
+		public var magnetObj:MagnetObj;
 		[Embed(source = "../assets/land_bg.gif")] private var background_image:Class;
 		
 		// tilemap
@@ -25,22 +26,37 @@ package
 			bg = new FlxSprite(0, 0, background_image);
 			add(bg);
 			
-			collisionMap = new FlxTilemap(); // Creates a new tilemap with no arguments
-			// Initializes the map using the generated string, the tile images, and the tile size
-			collisionMap.loadMap(new default_alt(), alt_tiles, TILE_WIDTH, TILE_HEIGHT, FlxTilemap.AUTO);
+			collisionMap = new FlxTilemap().loadMap(new default_alt(), alt_tiles, TILE_WIDTH, TILE_HEIGHT, FlxTilemap.AUTO);
 			add(collisionMap);
 			
-			player = new Player();
+			player = new Player(FlxG.width/2, FlxG.height/2);
 			add(player);
 			
-			test = new FlxText(0,0,100,"hello arupaka"); //adds a 100px wide text field at position 0,0 (upper left)
+			magnetObj = new MagnetObj(50,100);
+			add(magnetObj);
+			
+			test = new FlxText(FlxG.width/2,50,100,"hello arupaka"); //adds a 100px wide text field at position 0,0 (upper left)
 			add(test); //adds a 100px wide text field at position 0,0 (upper left)
+		}
+		
+		private function seeMagnet():Boolean
+		{
+			return true; 
 		}
 		
 		override public function update():void
 		{
 			// test.text = player.velocity.x + "," + player.velocity.y;
 			FlxG.collide(player, collisionMap);
+			// FlxG.collide(magnetObj, collisionMap);
+			
+			if (FlxG.keys.M) {
+				if (seeMagnet()) {
+					test.text = player.y + "," + magnetObj.y;
+					magnetObj.velocity.x = 50;
+				}
+				
+			}
 
 			super.update();
 		}
